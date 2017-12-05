@@ -32,6 +32,22 @@ Docker BootCamp Documentation
  
  
  Run this script: docker run echo 'Hi'
-  
+ 
+ # 2. Docker CMDS
+ - docker run -i -t --name YOUR_NAME -d ubuntu /bin/bash
+  - e.g. docker run
+ - docker start -i ${CONTAINER NAME}
+ - docker ps -a  and -l
+ - docker rm ${CONTAINER ID or NAME}
+ - docker inspect ${CONTAINER ID}
+ - Ctrl + P Ctrl + Q
+ - docker attach ${CONTAINER ID or NAME}
+ - docker logs -t -f --tail ${0 or NUM} ${CONTAINER ID or NAME}
+ - docker top ${CONTAINER ID or NAME}
+ - docker exec -i -t ${CONTAINER NAME}  CMDs
+ - docker stop ${CONTAINER ID or NAME}
+ - docker kill ${CONTAINER ID or NAME}
+ 
+ 
   
   
