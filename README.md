@@ -48,6 +48,18 @@ Docker BootCamp Documentation
  - docker stop ${CONTAINER ID or NAME}
  - docker kill ${CONTAINER ID or NAME}
  
+ # 3. Docker Nginx
+ - docker run -p 80 --name web01 -t -i ubuntu /bin/bash
+ - apt-get install -y nginx (in container)
+ - apt-get install -y vim (in container optional)
+ - mkdir -p /var/www/html (in container optional this can be any dir)
+ - vim index.html (simple HTML page)
+ - whereis nginx (find out where is nginx config file)
+ - vim  /etc/nginx/sites-enabled/default (find root key-value and change the path, in my case, to /var/www/html)
+ - nginx (in container)
+ - Ctrl + P Ctrl + Q (still in container)
+ - docker inspect web01 | grep IPAddress
+ - curl http://${IPAddress}
  
   
   
