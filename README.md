@@ -60,6 +60,8 @@ Docker BootCamp Documentation
  - Ctrl + P Ctrl + Q (still in container)
  - docker inspect web01 | grep IPAddress
  - curl http://${IPAddress}
+ - docker port ${CONTAINER NAME}
+ 
  
   
   
