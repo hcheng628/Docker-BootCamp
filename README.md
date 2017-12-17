@@ -62,6 +62,45 @@ Docker BootCamp Documentation
  - curl http://${IPAddress}
  - docker port ${CONTAINER NAME}
  
+ # 4. Docker Repo + Image
+ - docker info
+ This shows: Lots of Info including Storage Driver location and Docker Root Dir ......
+ - docker images
+ - docker rmi  ${REPO+':'TAG or IMAGE ID} -f (For multi-images use space e.g. ubuntu:12.04 ubuntu:12.10)
+   To delete all docker rmi $(docker images -q)
+ - docker search ubuntu -s 3
+ - docker pull $(REPO + ':' TAG)
+ Change Docker Registry URL
+ Edit /etc/default/docker
+ Create Docker Images
+ 1. NON-AUTO
+ - docker commit -a 'chenghongyu628' -m 'nginx' ${CONTAINER ID or CONTAINER NAME} ${YOUR IMAGE NAME}
+ - docker run -d --name nginx_web02 -p 80 chenghongyu628/nginx nginx -g "daemon off;"
+ - docker ps -l
+ - curl http://0.0.0.0:${PORT}
+ 
+ 2. AUTO(Dockerfile + Suggested)  
+ Example:  
+ FROM ubuntu:14.04  
+ MAINTAINER chenghongyu628 "email@email.com"  
+ RUN apt-get update  
+ RUN apt-get install nginx -y  
+ EXPOSE 80  
+ 
+  - mkdir -p dockerfile/df_01
+  - cd dockerfile/df_01
+  - vim Dockerfile
+  - docker build -t='chenghongyu628/df_01' .
+  - docker run -d --name nginx_02 -p 80 chenghongyu628/df_01 nginx -g "daemon off;" (Test if this works)
+  - docker ps -l
+  - curl http://0.0.0.0:${PORT Num returned from last cmd}
+  - docker login
+  ENTER USERNAME AND PASSWD
+  - docker push ${IMAGE NAME}
+  
+  
+ 
+ 
  
   
   
