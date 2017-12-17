@@ -98,6 +98,40 @@ Docker BootCamp Documentation
   ENTER USERNAME AND PASSWD
   - docker push ${IMAGE NAME}
   
+  # 5. Docker CS Arch (Client and Server)
+  - nc -U /var/run/docker.sock
+  - GET /info HTTP/1.0
+  This is just like - docker info but via Remote API by default docker client connects to server via unix socket.  
+    
+  Check Status:  
+  - service docker stop
+  - service docker status
+  - service docker restart  
+  
+  Docker Server Config File: /etc/default/docker
+  By default in Docker  17.11.0-ce this file is not loaded.
+  Here is what you need to do: 
+  1. - vim /lib/systemd/system/docker.service  
+  Update ExecStart to /usr/bin/dockerd -H fd:// $DOCKER_OPTS  
+  Add EnvironmentFile=-/etc/default/docker  
+  2. - vim /etc/default/docker (Add: DOCKER_OPTS=" --label name=docker_server " as an example)
+  3. - systemctl daemon-reload  
+  4. - service docker restart  
+  5. - docker info  
+  You should see this label under Labels section
+  
+  Client Connects to Server Over TCP:
+  - docker -H tcp://${IP}:${PORT} info (CMDs)  
+  - curl http://${IP}:${PORT}/info (Via Remote API)
+  or set Env Var for Docker Client: export DOCKER_HOST="tcp://${IP}:${PORT}"  
+  If this Env Var set, docker command will trigger remote Docker Server.  
+  To unset this, export DOCKER_HOST=""
+  
+  For Docker Host, it allows "mult- -H" options so it will resposne to both local and remote Docker Clients requests.  
+  
+  
+
+  
   
  
  
