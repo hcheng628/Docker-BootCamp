@@ -120,12 +120,14 @@ Docker BootCamp Documentation
   5. - docker info  
   You should see this label under Labels section
   
-  Client Connects to Server Over TCP:
-  - docker -H tcp://${IP}:${PORT} info (CMDs)  
-  - curl http://${IP}:${PORT}/info (Via Remote API)
-  or set Env Var for Docker Client: export DOCKER_HOST="tcp://${IP}:${PORT}"  
+  Client Connects to Server Over TCP:  
+   
+  1. - docker -H tcp://${IP}:${PORT} info (CMDs)  
+  2. - curl http://${IP}:${PORT}/info (Via Remote API)  
+  or set Env Var for Docker Client:  
+  3. - export DOCKER_HOST="tcp://${IP}:${PORT}"  
   If this Env Var set, docker command will trigger remote Docker Server.  
-  To unset this, export DOCKER_HOST=""
+  To unset this, export DOCKER_HOST=""  
   
   For Docker Host, it allows "mult- -H" options so it will resposne to both local and remote Docker Clients requests.  
   
