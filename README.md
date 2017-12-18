@@ -132,6 +132,99 @@ Docker BootCamp Documentation
   For Docker Host, it allows "mult- -H" options so it will resposne to both local and remote Docker Clients requests.  
   
   
+  # 6. Dockerfile Instructions
+  ARG:  
+ARG CODE_VERSION=latest  
+This variable can be used in FROM  
+
+
+
+FROM:  
+FROM ubuntu  
+FROM ubuntu:14.04  
+
+
+
+CMD:  
+CMD echo 'This is a test.' | wc - (/bin/sh -c)  
+CMD ["/usr/bin/wc","--help"]  
+
+
+
+ENTRYPOINT:  
+ENTRYPOINT top -b (/bin/sh -c)  
+ENTRYPOINT ["top", "-b"]  
+ENTRYPOINT ["/usr/sbin/apache2ctl","-D","FOREGROUND"]  
+Use together with CMD(Options)  
+
+
+
+RUN:  
+RUN apt install nginx -y (/bin/sh -c)  
+RUN ['/bin/bash', '-c', 'source $HOME/.bashrc']  
+
+
+
+ADD:  
+ADD <src FILE_SYSTEM_PATH or URL> <dest>  
+Since <src> is a local tar archive, options like -x...... are available.  
+See Doc for more info.  
+
+
+
+COPY:  
+COPY hom*.html /somedir/  
+COPY ["home page.xml","/some dir/"]  
+
+
+VOLUME:  
+VOLUME /myVolume  
+
+
+
+WORKDIR:  
+WORKDIR /abc  
+This set WORKDIR for RUN, CMD, ENTRYPOINT, COPY, and AND instructions.  
+Abs-Path is recommended.  
+
+
+USER:  
+USER <user>[:<group>]  
+USER <UID>[:<GID>]  
+
+
+
+EXPOSE:  
+EXPOSE 80 (by default TCP make sure using -p to run a container)  
+
+
+
+ENV:  
+ENV abc hello  
+ENV abc=hello def=$abc  
+
+
+
+LABEL:  
+LABEL key1="val_1" key2="val_2"  
+
+
+
+MAINTAINER(deprecated):  
+Use LABEL instead!!!  
+
+
+
+ONBUILD:  
+ONBUILD [INSTRUCTION]  
+ONBUILD [RUN apt-get curl -y]  
+
+
+
+STOPSIGNAL:  
+STOPSIGNAL signal  
+  
+  
 
   
   
