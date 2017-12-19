@@ -33,7 +33,7 @@ Docker BootCamp Documentation
  
  Run this script: docker run echo 'Hi'
  
- # 2. Docker CMDS
+ # 2. Docker CMDS to Start off with
  - docker run -i -t --name YOUR_NAME -d ubuntu /bin/bash
   - e.g. docker run
  - docker start -i ${CONTAINER NAME}
