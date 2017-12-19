@@ -42,6 +42,7 @@ Docker BootCamp Documentation
  - docker inspect ${CONTAINER ID}
  - Ctrl + P Ctrl + Q
  - docker attach ${CONTAINER ID or NAME}
+ - docker restart %{CONTAINER NAME}
  - docker logs -t -f --tail ${0 or NUM} ${CONTAINER ID or NAME}
  - docker top ${CONTAINER ID or NAME}
  - docker exec -i -t ${CONTAINER NAME}  CMDs
@@ -95,8 +96,9 @@ Docker BootCamp Documentation
   - docker ps -l
   - curl http://0.0.0.0:${PORT Num returned from last cmd}
   - docker login
-  ENTER USERNAME AND PASSWD
-  - docker push ${IMAGE NAME}
+  ENTER USERNAME AND PASSWD  
+  - docker push ${IMAGE NAME}  
+  
   
   # 5. Docker CS Arch (Client and Server)
   - nc -U /var/run/docker.sock
@@ -224,7 +226,24 @@ ONBUILD [RUN apt-get curl -y]
 STOPSIGNAL:  
 STOPSIGNAL signal  
 
-- docker history ${IMAGE NAME}
+- docker history ${IMAGE NAME}  
+
+# 6. Docker Networks  
+Note: Have brctl + ifconfig installed.  
+- sudo apt install net-tools  
+- sudo apt install bridge-utils  
+
+Config Host Machine Network:  
+- brctl show  
+- brctl addbr docker_net  
+- ifconfig docker_net 10.11.12.1 netmask 255.255.255.0  
+
+Config Docker Network:  
+- sudo vim /etc/default/docker (Add -b=docker_net in DOCKER_OPTS)  
+- sudo service docker restart  
+ Now Docker containers will be running in this custom IP range.
+
+
   
   
 
