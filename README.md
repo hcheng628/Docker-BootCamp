@@ -90,7 +90,7 @@ Docker BootCamp Documentation
   - mkdir -p dockerfile/df_01
   - cd dockerfile/df_01
   - vim Dockerfile
-  - docker build -t='chenghongyu628/df_01' .
+  - docker build -t='chenghongyu628/df_01' . (-no-cache or in Dockerfile add: ENV REFRESH_DATE 2017-12-08)
   - docker run -d --name nginx_02 -p 80 chenghongyu628/df_01 nginx -g "daemon off;" (Test if this works)
   - docker ps -l
   - curl http://0.0.0.0:${PORT Num returned from last cmd}
@@ -133,7 +133,7 @@ Docker BootCamp Documentation
   
   
   # 6. Dockerfile Instructions
-  ARG:  
+ARG:  
 ARG CODE_VERSION=latest  
 This variable can be used in FROM  
 
@@ -223,6 +223,8 @@ ONBUILD [RUN apt-get curl -y]
 
 STOPSIGNAL:  
 STOPSIGNAL signal  
+
+- docker history ${IMAGE NAME}
   
   
 
