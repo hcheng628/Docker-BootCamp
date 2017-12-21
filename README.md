@@ -241,7 +241,37 @@ Config Host Machine Network:
 Config Docker Network:  
 - sudo vim /etc/default/docker (Add -b=docker_net in DOCKER_OPTS)  
 - sudo service docker restart  
- Now Docker containers will be running in this custom IP range.
+Now Docker containers will be running in this custom IP range.  
+  
+   
+ Run Docker Container with Link Alias:  
+ - docker run --link=${CONTAINER_NAME}:${YOUR_ALIAS}  
+ - ping ${YOUR_ALIAS}  
+   
+ Connections Among Containers:  
+ Edit /etc/default/docker + add --icc to DOCKER_OPTS  
+ --icc=true (default) to enable.  
+ --icc=false to disable.  
+ Note: When updated this file, restart docker services.  
+   
+ iptables + Containers:  
+ Edit /etc/default/docker + add --iptables=true  
+     
+ iptables CMD:  
+ iptables -F
+ iptables -L -n
+ 
+ iptables + External Access:  
+ Note: When docker service started, it will enable ip-forward.  
+ To change this default value, in DOCKER_OPTS change --ip-forward=false  
+ To check it:  
+ - sysctl net.ipv4.conf.all.forwarding  
+ - docker port ${CONTAINER_NAME}  
+ 
+ To Drop a Request of a give IP:  
+ - iptables -I DOCKER -s ${SOURCE_IP} -d ${DESTINATION_IP} -p TCP --dport 80 -j DROP  
+ Google iptables and its options for more information. Very powerful!!!
+ 
 
 
   
