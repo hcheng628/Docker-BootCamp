@@ -270,7 +270,18 @@ Now Docker containers will be running in this custom IP range.
  
  To Drop a Request of a give IP:  
  - iptables -I DOCKER -s ${SOURCE_IP} -d ${DESTINATION_IP} -p TCP --dport 80 -j DROP  
- Google iptables and its options for more information. Very powerful!!!
+ Google iptables and its options for more information. Very powerful!!!  
+ 
+ # 7. Docker Backup/Restore:  
+ - docker run -v ${HOST_MACHINE_PATH}:${DOCKER_CONTAINER_PATH} -it /bin/bash  
+ Also, we can use VOLUME instruction in Dockerfile: VOLUME ["DOCKER_CONTAINER_PATH_1","DOCKER_CONTAINER_PATH_2"]   
+ - docker inspect ${CONTAINER_NAME} --format="{{.Mounts}}"  
+ Or Nav to Mounts Section, to see the mappings of its HOST_MOUNT_PATH and DOCKER_CONTAINER_PATH.  
+ 
+ Docker Volume Container:  
+ - docker run --volumes-from CONTAINER_NAME_A --volumes-from CONTAINER_NAME_B -it ubuntu  
+ To backup + restore:  
+ - docker run -rm --volumes-from CONTAINER_NAME_A -v /HOST_BACKUP:/VM_BACKUP ubuntu tar cvf /VM_BACKUP/backup.DATETIME.tar /CONTAINER_FILE_A CONTAINER_DIR_A
  
 
 
