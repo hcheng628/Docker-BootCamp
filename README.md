@@ -47,7 +47,15 @@ Docker BootCamp Documentation
  - docker top ${CONTAINER ID or NAME}
  - docker exec -i -t ${CONTAINER NAME}  CMDs
  - docker stop ${CONTAINER ID or NAME}
- - docker kill ${CONTAINER ID or NAME}
+ - docker kill ${CONTAINER ID or NAME}  
+ 
+ Install nsenter (util-linux):  
+ User can now attach to a Docker Container via nsenter CMD, here is a .sh script to make it even easiler.  
+ File: in-docker.sh  
+ CNAME=$1  
+ CPID=$(docker inspect --format="{{.State.Pid}}" $CNAME)  
+ nsenter --target "$CPID" --mount --uts --ipc --net --pid  
+ 
  
  # 3. Docker Nginx
  - docker run -p 80 --name web01 -t -i ubuntu /bin/bash
@@ -98,6 +106,22 @@ Docker BootCamp Documentation
   - docker login
   ENTER USERNAME AND PASSWD  
   - docker push ${IMAGE NAME}  
+  
+  Another Example:  
+  FROM centos  
+  RUN yum install -y  wget gcc gcc-c++ make openssl-devel  
+  RUN useradd -s /sbin/nologin -M www  
+  ADD ./nginx*.*.gz /usr/local/src  
+  ADD ./pcre*.*.gz /usr/local/src  
+  WORKDIR /usr/local/src/nginx-1.13.7  
+  RUN ./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module  --with-pcre=/usr/local/src/pcre-8.41 && make && make install  
+  ENV PATH /usr/local/nginx/sbin:$PATH  
+  RUN echo "daemon off;" >> /usr/local/nginx/conf/nginx.conf  
+  EXPOSE 80  
+  CMD ["nginx"]  
+  
+  Note: nginx and pcre gz files have been downloaded to host pwd.
+
   
   
   # 5. Docker CS Arch (Client and Server)
