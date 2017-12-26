@@ -307,6 +307,28 @@ Now Docker containers will be running in this custom IP range.
  To backup + restore:  
  - docker run -rm --volumes-from CONTAINER_NAME_A -v /HOST_BACKUP:/VM_BACKUP ubuntu tar cvf /VM_BACKUP/backup.DATETIME.tar /CONTAINER_FILE_A CONTAINER_DIR_A
  
+ # 8. Docker Resource Allocation/Isolation  
+ Note: You will need to install stress in your docker container.  
+ Here is the Dockerfile:  
+ FROM centos  
+ ADD ./epel-7.repo /etc/yum.repos.d/  
+ RUM yum install -y stress && yum clean all  
+ ENTRYPOINT ["stress"]  
+ 
+ Need to add epel-7.repo file to get stress installed later in the build process.
+ 
+ Now, the test:  
+ Note: CPU info is here at: /proc/cpuinfo  
+ 
+ - docker run -it --rm -c 512 stress-container --cpu 2  
+ - docker run -it --rm --cpuset-cpus 0 stress-container --cpu 1
+ - docker rum -it --rm -m 256m stress-container --vm 1 vm-bytes 222m --vm-hang 0  
+ 
+ 
+ 
+ 
+ 
+ 
 
 
   
