@@ -41,7 +41,8 @@ Docker BootCamp Documentation
  - docker rm ${CONTAINER ID or NAME}
  - docker inspect ${CONTAINER ID}
  - Ctrl + P Ctrl + Q
- - docker attach ${CONTAINER ID or NAME}
+ - docker attach ${CONTAINER ID or NAME}  
+ - docker exec -it $(CONTAINER NAME)
  - docker restart %{CONTAINER NAME}
  - docker logs -t -f --tail ${0 or NUM} ${CONTAINER ID or NAME}
  - docker top ${CONTAINER ID or NAME}
@@ -55,7 +56,11 @@ Docker BootCamp Documentation
  CNAME=$1  
  CPID=$(docker inspect --format="{{.State.Pid}}" $CNAME)  
  nsenter --target "$CPID" --mount --uts --ipc --net --pid  
+ One of the reasons more Devs prefer exec over attach is due to the fact when exit on attach it also ends the container.  
+
  
+
+
  
  # 3. Docker Nginx
  - docker run -p 80 --name web01 -t -i ubuntu /bin/bash
