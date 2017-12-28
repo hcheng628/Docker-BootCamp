@@ -82,7 +82,7 @@ under the License.
     -->
   </pluginGroups>
 
-  <proxies> 
+  <!--proxies> 
     <proxy>
       <id>optional</id>
       <active>true</active>
@@ -91,7 +91,7 @@ under the License.
       <port>3128</port>
       <nonProxyHosts>www.google.com</nonProxyHosts>
     </proxy>
-  </proxies>
+  </proxies-->
 
   <!-- servers
    | This is a list of authentication profiles, keyed by the server-id used within the system.

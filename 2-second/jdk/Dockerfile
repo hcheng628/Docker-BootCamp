@@ -4,7 +4,7 @@
 #
 # Dockerizing jdk: Dockerfile for building jdk images
 #
-FROM       csphere/centos:7.1
+FROM       centos7/base
 MAINTAINER Carson,C.J.Zeong <zcy@nicescale.com>
 
 ENV JAVA_VERSION 1.7.0

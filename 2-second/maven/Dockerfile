@@ -4,15 +4,15 @@
 #
 # Dockerizing maven: Dockerfile for building maven images
 #
-FROM       csphere/jdk:1.7.0
+FROM       centos7/base/jdk
 MAINTAINER Carson,C.J.Zeong <zcy@nicescale.com>
 
 ENV MAVEN_VERSION 3.3.3
 ENV MAVEN_HOME /opt/maven
 
 # Install maven
-ADD http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz /opt/
-
+#ADD http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz /opt/
+ADD https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz /opt/
 #COPY apache-maven-3.3.3-bin.tar.gz /opt/
 
 RUN tar xzf /opt/apache-maven-3.3.3-bin.tar.gz -C /opt && \
