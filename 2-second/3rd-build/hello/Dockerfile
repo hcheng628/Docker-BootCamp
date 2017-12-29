@@ -4,9 +4,10 @@
 #
 # Dockerizing HelloWorld: Dockerfile for building HelloWorld images
 #
-FROM       csphere/tomcat:7.0.55
+FROM       centos7/base/tomcat
 MAINTAINER Carson,C.J.Zeong <zcy@nicescale.com>
 
+RUN yum -y install mysql
 ADD init /init
 
 ENTRYPOINT ["/init", "/scripts/run"]
