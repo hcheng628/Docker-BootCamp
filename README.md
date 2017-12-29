@@ -75,6 +75,8 @@ Docker BootCamp Documentation
  - docker inspect web01 | grep IPAddress
  - curl http://${IPAddress}
  - docker port ${CONTAINER NAME}
+ - docker cp SRC DES (cp file/folder between CONTAINER + HOST_MACHINEi)  
+
  
  # 4. Docker Repo + Image
  - docker info
@@ -328,3 +330,10 @@ Now Docker containers will be running in this custom IP range.
  - docker run -it --rm -c 512 stress-container --cpu 2  
  - docker run -it --rm --cpuset-cpus 0 stress-container --cpu 1
  - docker run -it --rm -m 256m stress-container --vm 1 vm-bytes 222m --vm-hang 0   
+
+ # 8. Docker Registry:
+ - docker pull registry  
+ - docker tag IMAGE[:TAG] 172.17.0.2:5000/IMAGE_NAME[:TAG] (For private registry, ip and port are required)  
+ - docker push IMAGE_NAME[:TAG]  
+ - docker pull 172.17.0.2:5000/IMAGE_NAME[:TAG]  
+ 
