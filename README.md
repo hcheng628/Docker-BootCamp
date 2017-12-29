@@ -327,22 +327,4 @@ Now Docker containers will be running in this custom IP range.
  
  - docker run -it --rm -c 512 stress-container --cpu 2  
  - docker run -it --rm --cpuset-cpus 0 stress-container --cpu 1
- - docker rum -it --rm -m 256m stress-container --vm 1 vm-bytes 222m --vm-hang 0  
- 
- 
- 
- 
- 
- 
-
-
-  
-  
-
-  
-  
- 
- 
- 
-  
-  
+ - docker run -it --rm -m 256m stress-container --vm 1 vm-bytes 222m --vm-hang 0   
