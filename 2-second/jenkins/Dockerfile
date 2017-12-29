@@ -4,7 +4,7 @@
 #
 # Dockerizing Jenkins: Dockerfile for building Jenkins images
 #
-FROM       csphere/jdk:1.7.0
+FROM       centos7/base/jdk
 MAINTAINER Carson,C.J.Zeong <zcy@nicescale.com>
 
 ENV JENKINS_HOME /var/jenkins_home
