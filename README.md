@@ -290,7 +290,8 @@ Now Docker containers will be running in this custom IP range.
      
  iptables CMD:  
  iptables -F
- iptables -L -n
+ iptables -L -n  
+ Note: By default this will be filter table.
  
  iptables + External Access:  
  Note: When docker service started, it will enable ip-forward.  
