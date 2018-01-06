@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://172.17.0.5:3306/xc" />
+				<property name="url" value="jdbc:mysql://172.17.0.2:3306/xc" />
 				<property name="username" value="admin" />
 				<property name="password" value="atlanta2016" />
 			</dataSource>
